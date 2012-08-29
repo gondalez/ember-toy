@@ -1,0 +1,48 @@
+<html>
+
+	<head>
+		<style type="text/css">
+			h1, a{color: blue; text-decoration: underline; cursor: pointer;}
+			.item {font-size: xx-large; 
+				border: dashed 1px dimgray; 
+				width: 1em; 
+				text-align: center;  
+				margin: 10px;
+			}
+		</style>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script src="handlebars-1.0.0.beta.6.js"></script>
+		<script src="ember.js"></script>
+		<script src="app.js"></script>
+
+		<script type="text/x-handlebars" data-template-name="application">
+			<h1 {{action "doHome"}}>OMG Routing</h1>
+			{{outlet}}
+		</script>
+		<script type="text/x-handlebars" data-template-name="home">
+			<h2>Home</h2>
+			<a {{action "doQueue"}}>Queue</a>
+		</script>
+		<script type="text/x-handlebars" data-template-name="queue">
+			<h2>Queue</h2>
+			<div>
+				Things in it:
+				{{#each item in content}}
+					<a {{action "doQueueItem" context="item"}}>{{item}}</a>
+				{{/each}}
+			</div>
+		</script>
+		<script type="text/x-handlebars" data-template-name="queueItem">
+			<div class="item">
+				{{value}}
+			</div>	
+			<a {{action "doQueue"}}>Back to queue</a>
+		</script>
+	</head>
+
+	<body>
+
+	</body>
+
+</html>
